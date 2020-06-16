@@ -101,13 +101,15 @@ $('document').ready(function(){
 		e.preventDefault();
 		e.stopPropagation();
 		var department = $('.result_form #rating_department').val(),
-			employee = $('.result_form #rating_employee').val();
+			employee = $('.result_form #rating_employee').val(),
+			from_time = $('.result_form .from_time').val(),
+			to_time = $('.result_form .to_time').val();
 
 
 		$.ajax({
 			type: "POST",
 			url: "../../actions/GetresultAction.php",
-			data: {department: department, employee: employee},
+			data: {department: department, employee: employee, from_time: from_time, to_time: to_time},
 			success: function(data){
 
 				$('.result_block').html(data);
@@ -260,6 +262,31 @@ $('document').ready(function(){
 		}
 		
 	});
+
+	$('body').find('.js_date').each(function(){
+			var el = $(this);
+			if (el.hasClass('alldate')) {
+				el.datetimepicker({
+					timepicker:false,
+					format:'d.m.Y',
+					lang:'ru',
+					closeOnDateSelect: true,
+					//minDate: '-1970/01/01',
+					defaultDate:new Date(),
+					dayOfWeekStart:1,
+				});
+			} else {
+				el.datetimepicker({
+					timepicker:false,
+					format:'d.m.Y',
+					lang:'ru',
+					closeOnDateSelect: true,
+					minDate: '-1970/01/01',
+					defaultDate:new Date(),
+					dayOfWeekStart:1,			
+				});
+			}
+		});
 
 })
 

@@ -33,6 +33,9 @@ $result_department = $mysqli->query($query_department);
 			<option value="-" selected="">Барлық қызметкерлер</option>
 		</select>
 
+		<input type="text" name="from_time" class="js_date alldate from_time time">
+		<input type="text" name="to_time" class="js_date alldate to_time time">
+
 		<button class="submit_btn">Таңдау</button>
 
 	</form>

@@ -17,13 +17,6 @@ if ($view['status'] == 'error') {
 
 require 'layout/header.php';
 
-	if ( $check_auth == true && $view['status'] != 'error' ) {
-		require 'layout/user_menu.php';
-	} else {
-
-	}
-
-
 	if ( file_exists($view['url']) ){
 		require $view['url'];
 	}

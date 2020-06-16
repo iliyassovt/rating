@@ -15,12 +15,16 @@ $query_marks = "SELECT t.id, t.rating, t.comment, t.create_time, d.name as depar
 <? if ( isset($_POST) ) : ?>
 
 		<? 
-			if ( (isset($_POST['department']) && $_POST['department'] != '-')  || (isset($_POST['employee']) && $_POST['employee'] != '-') ) $query_marks .= " WHERE";
-			if ( isset($_POST['department']) && $_POST['department'] != '-' ) $query_marks .= " t.department_id = " . $_POST['department'];
-			if ( isset($_POST['department']) && $_POST['department'] != '-' && isset($_POST['employee']) && $_POST['employee'] != '-' )  $query_marks .= " AND";
-			if ( isset($_POST['employee']) && $_POST['employee'] != '-' && $_POST['employee'] != '' ) $query_marks .= " t.employee_id = " . $_POST['employee'];
-			$query_marks .= " ORDER BY t.id DESC";
-			//var_dump($query_marks);die;
+			if( isset($_POST['from_time']) && $_POST['from_time'] != 0 ) $from_time = strtotime($_POST['from_time']);
+			if( isset($_POST['to_time']) && $_POST['to_time'] != 0 ) $to_time = strtotime($_POST['to_time'] . " +24 hour");
+
+			$query_marks .= " WHERE";
+			if ( isset($_POST['department']) && $_POST['department'] != '-' ) $query_marks .= " t.department_id = " . $_POST['department'] . " AND";
+			if ( isset($_POST['employee']) && $_POST['employee'] != '-' && $_POST['employee'] != '' ) $query_marks .= " t.employee_id = " . $_POST['employee'] . " AND";
+			if ( $from_time ) $query_marks .= " t.create_time > " . $from_time . " AND";
+			if ( $to_time ) $query_marks .= " t.create_time < " . $to_time . " AND";
+			$query_marks .= " d.name IS NOT NULL AND e.name IS NOT NULL ORDER BY t.id DESC";
+
 			$result_marks = $mysqli->query($query_marks); 
 
 		?>
@@ -45,7 +49,7 @@ $query_marks = "SELECT t.id, t.rating, t.comment, t.create_time, d.name as depar
 							<td><?=$row['employee_name']?></td>
 							<td><?=$row['rating']?></td>
 							<td><?=$row['comment']?></td>
-							<td><?=$row['create_time']?></td>
+							<td><?=date("d.m.Y", $row['create_time']);?></td>
 							<? 
 								$total += $row['rating'];
 								$qty++;
