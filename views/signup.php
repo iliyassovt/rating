@@ -1,7 +1,7 @@
 
 
-<form method="POST" action="actions/SignupAction.php" class="ajax-form">
-Логин <input name="Signup[login]" type="text" required><br>
-Пароль <input name="Signup[password]" type="password" required><br>
-<input type="submit" value="Тіркелу">
+<form method="POST" action="actions/SignupAction.php" class="login_form ajax-form">
+	<input name="Signup[login]" class="text" type="text" required placeholder="Логин"><br>
+	<input name="Signup[password]" class="text" type="password" required placeholder="Құпиясөз"><br>
+	<input type="submit" class="submit_btn" value="Тіркелу">
 </form>

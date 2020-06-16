@@ -14,7 +14,7 @@ $result_department = $mysqli->query($query_department);
 ?>
 
 <div class="block_30">
-	<form class="result_form" action="actions/GetresultAction.php" method="POST">
+	<form class="employee_form" action="actions/GetemployessAction.php" method="POST">
 
 
 		<select name="department" id="rating_department" class="select_department">
@@ -29,10 +29,6 @@ $result_department = $mysqli->query($query_department);
 			<option value="-" selected="">Барлық бөлімдер</option>
 		</select>
 
-		<select name="employee" id="rating_employee" class="select_employee">
-			<option value="-" selected="">Барлық қызметкерлер</option>
-		</select>
-
 		<button class="submit_btn">Таңдау</button>
 
 	</form>
@@ -40,6 +36,6 @@ $result_department = $mysqli->query($query_department);
 
 <div class="block_70">
 
-	<span class="result_block"></span>
+	<span class="employee_block"></span>
 
 </div>

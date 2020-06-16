@@ -1,8 +1,7 @@
-<?//var_dump($_SESSION);die; ?>
 
-<form method="POST" action="actions/SigninAction.php" class="ajax-form">
-<input name="Signin[from_url]" type="hidden" value="<?= $request; ?>"><br>
-Логин <input name="Signin[login]" type="text" required><br>
-Пароль <input name="Signin[password]" type="password" required><br>
-<input name="submit" type="submit" value="Войти">
+<form method="POST" action="actions/SigninAction.php" class="login_form ajax-form">
+	<input name="Signin[from_url]" type="hidden" value="<?= $request; ?>"><br>
+	<input name="Signin[login]" class="text" type="text" required placeholder="Логин"><br>
+	<input name="Signin[password]" class="text" type="password" required placeholder="Құпиясөз"><br>
+	<input name="submit" type="submit" class="submit_btn" value="Кіру">
 </form>

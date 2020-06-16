@@ -19,7 +19,7 @@ $query_employee = "SELECT * FROM employee";
 <form class="rating_form ajax-form" action="actions/AjaxRequests.php" method="POST">
 
 
-	<select name="department_id" id="rating_department">
+	<select name="department_id" id="rating_department" class="select_department">
 		
 		<? if ($result = $mysqli->query($query_department)) : ?>
 			<? while ($row = $result->fetch_assoc()) : ?>
@@ -28,19 +28,11 @@ $query_employee = "SELECT * FROM employee";
 		    
 		<? $result->free(); endif; ?>
 		
-		<option value="-" selected="">Бөлімді таңдаңыз</option>
+		<option value="-" selected="">-- Бөлімді таңдаңыз --</option>
 	</select>
 
-	<select name="employee_id" id="rating_employee">
-		
-		<? if ($result = $mysqli->query($query_employee)) : ?>
-			<? while ($row = $result->fetch_assoc()) : ?>
-		        <option value="<?=$row['id']?>"><?=$row['name']?></option>
-		    <? endwhile; ?>
-		    
-		<? $result->free(); endif; ?>
-
-		<option value="-" selected="">Қызметкерді таңдаңыз</option>
+	<select name="employee_id" id="rating_employee" class="select_employee">
+		<option value="-" selected="">-- Қызметкерді таңдаңыз --</option>
 	</select>
 
 

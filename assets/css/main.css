@@ -125,18 +125,39 @@ h1 {
     margin-right: -150px;
 	color: #fff;
 }
+.user_menu>p {
+	display: inline-block;
+	position: absolute;
+	left: 10%;
+}
 .user_menu span {
 	text-transform: uppercase; 
 	font-size: 18px;
 	color: #FAB400;
 }
-.user_menu a {
+.user_menu>a {
 	color: #fff;
 	font-size: 12px;
 	margin-left: 100px;
 	opacity: 0.7;
 	position: absolute;
 	right: 5%;
+}
+
+
+ul.user_menu_list {
+	padding: 0;
+	list-style: none;
+	display: inline-block;
+}
+ul.user_menu_list li {
+	position: relative;
+    padding-left: 15px;
+	display: inline-block;
+}
+ul.user_menu_list li a {
+	color: #fff;
+	font-size: 13px;
 }
 
 .result_form {
@@ -176,4 +197,59 @@ h1 {
 .result_table td {
 	border: 1px solid #fff;
 	padding: 5px 10px;
+}
+
+
+
+.employee_form {
+	max-width: 300px;
+}
+
+.employee_form select {
+	display: block;
+	width: 250px;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+	margin: 30px auto;
+}
+.employee_form .submit_btn {
+	height: 45px;
+    line-height: 45px;
+    padding-left: 35px;
+    padding-right: 35px;
+    font-size: 18px;
+}
+
+.department_form .department, .employee_form_add .employee, .login_form .text {
+	color: #fff;
+	font-size: 18px;
+    font-weight: 400;
+    border: none;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    min-height: 50px;
+    padding: 0 0 6px 30px;
+    z-index: 15;
+    background: unset;
+    resize: vertical;
+    max-height: 200px;
+    max-width: 600px;
+    height: 60px;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.employee_form_add select {
+	padding: 15px 20px;
+	margin-bottom: 20px;
+}
+
+table a {
+	color: #fff;
+	font-size: 12px;
+}
+table a:hover {
+	color: #fff;
+	opacity: 0.8;
 }

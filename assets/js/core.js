@@ -39,8 +39,19 @@ $('document').ready(function(){
 								if (!form.hasClass('notreset')) {
 									form[0].reset();
 									resetStars();
-									$('#rating_select').prop('rating_department', '-');
-									$('#rating_select').prop('rating_employee', '-');
+									$(`#rating_department option`).prop('selected', false);
+									$(`#rating_department option[value="-"]`).prop('selected', true);
+									$(`#rating_employee option`).prop('selected', false);
+									$(`#rating_employee option[value="-"]`).prop('selected', true);
+									$.ajax({
+										type: "POST",
+										url: "../../actions/GetoptionsAction.php",
+										data: {id: 0},
+										success: function(data){
+
+											$('.select_employee').html(data);
+										}
+									});
 								}
 							}
 
@@ -65,7 +76,190 @@ $('document').ready(function(){
 				}
 			})
 		}
-	})
+	});
+
+	$('.select_department').change(function(){
+
+		var id = $(this).val();
+		if ( id == 0 ) {
+
+		}
+
+		$.ajax({
+			type: "POST",
+			url: "../../actions/GetoptionsAction.php",
+			data: {id: id},
+			success: function(data){
+
+				$('.select_employee').html(data);
+			}
+		});
+	});
+
+	$('body').on('submit', '.result_form', function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+		var department = $('.result_form #rating_department').val(),
+			employee = $('.result_form #rating_employee').val();
+
+
+		$.ajax({
+			type: "POST",
+			url: "../../actions/GetresultAction.php",
+			data: {department: department, employee: employee},
+			success: function(data){
+
+				$('.result_block').html(data);
+			}
+		});
+	});
+
+	$('.del_department').click( function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+		id = $(this).attr('data-id');
+
+		$.ajax({
+			type: "POST",
+			url: "../../actions/DepartmentAction.php",
+			data: {id: id, action: 'delete'},
+			success: function(data){
+				location.reload();
+			}
+		});
+	});
+
+	$('.edit_department').click( function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+		var id = $(this).attr('data-id'),
+			name = $(this).attr('data-name');
+
+		$('.department_form .submit').val('Өзгерту');
+		$('.department_form .id').val(id);
+		$('.department_form .department').val(name);
+		
+	});
+
+	$('.department_form').submit( function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+
+		var id = $('.department_form .id').val(),
+			department = $('.department_form .department').val();
+
+		if ( id == -1 ) {
+			$.ajax({
+				type: "POST",
+				url: "../../actions/DepartmentAction.php",
+				data: {department: department, action: 'add'},
+				success: function(data){
+					location.reload()
+				}
+			});
+		} else {
+			$.ajax({
+				type: "POST",
+				url: "../../actions/DepartmentAction.php",
+				data: {id: id, department: department, action: 'edit'},
+				success: function(data){
+					location.reload()
+				}
+			});
+		}
+
+		
+	});
+
+	$('body').on('submit', '.employee_form', function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+		var department = $('.employee_form #rating_department').val();
+
+		$.ajax({
+			type: "POST",
+			url: "../../actions/GetemployeesAction.php",
+			data: {department: department},
+			success: function(data){
+				$('.employee_block').html(data);
+				$(`#rating_department2 option[value=${department}]`).prop('selected', true);
+			}
+		});
+	});
+
+	$('body').on('click', '.del_employee', function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+		id = $(this).attr('data-id');
+
+		$.ajax({
+			type: "POST",
+			url: "../../actions/EmployeeAction.php",
+			data: {id: id, action: 'delete'},
+			success: function(data){
+				$('.employee_form').submit();
+			}
+		});
+	});
+
+	$('body').on('click', '.edit_employee', function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+		var id = $(this).attr('data-id'),
+			name = $(this).attr('data-name'),
+			department = $(this).attr('data-department');
+
+		$('.employee_form_add .submit').val('Өзгерту');
+		$('.employee_form_add .id').val(id);
+		$('.employee_form_add .employee').val(name);
+		$(`#rating_department2 option[value=${department}]`).prop('selected', true);
+		
+	});
+
+	$('body').on('submit', '.employee_form_add', function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+
+		var id = $('.employee_form_add .id').val(),
+			employee = $('.employee_form_add .employee').val(),
+			department_id = $('.employee_form_add #rating_department2').val();
+
+		if ( department_id == '-' ) {
+			setNotice('Бөлімді таңдаңыз', 'warning');
+		} else {
+
+			if ( id == -1 ) {
+				$.ajax({
+					type: "POST",
+					url: "../../actions/EmployeeAction.php",
+					data: {employee: employee, department_id: department_id, action: 'add'},
+					success: function(data){
+						$('.employee_form').submit();
+					}
+				});
+			} else {
+				$.ajax({
+					type: "POST",
+					url: "../../actions/EmployeeAction.php",
+					data: {id: id, employee: employee, department_id: department_id, action: 'edit'},
+					success: function(data){
+						console.log(data);
+						$('.employee_form').submit();
+					}
+				});
+			}
+
+		}
+		
+	});
 
 })
 
