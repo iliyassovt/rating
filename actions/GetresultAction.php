@@ -57,7 +57,7 @@ $query_marks = "SELECT t.id, t.rating, t.comment, t.create_time, d.name as depar
 						</tr>
 					<? endwhile; $average = ($qty != 0) ? round( $total / $qty, 2 ) : '-'; ?>
 					<? if ( $average != '-' ) : ?>
-						<tr>
+						<tr style="background-color: #2490BA;">
 							<td colspan="3">Орташа бағасы</td>
 							<td><?= $average ?></td>
 							<td colspan="2"></td>

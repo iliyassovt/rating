@@ -261,3 +261,41 @@ table a:hover, table a:active, table a:focus {
 	color: #fff;
 	opacity: 0.8;
 }
+
+@media only screen and (max-width: 768px) {
+	body {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	h2 {
+		font-size: 42px;
+	}
+	.rating_form select {
+		width: 90%;
+	    height: 50px;
+	    font-size: 22px;
+	    display: block;
+	    padding-left: 15px;
+	    margin: 20px auto;
+	    max-width: 500px;
+	}
+	.c-rating {
+		margin-top: 5vh;
+	}
+	.c-rating__item {
+	    -webkit-flex: 0 0 60px;
+	    -ms-flex: 0 0 60px;
+	    flex: 0 0 60px;
+	    height: 60px;
+	}
+
+	.c-rating__item:hover,
+	.c-rating__item.is-active {
+	  background-position: -60px 0;
+	}
+	.rating_form textarea {
+		width: 90%;
+		margin-top: 5vh;
+		margin-bottom: 5vh;
+	}
+}
