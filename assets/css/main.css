@@ -302,6 +302,7 @@ table a:hover, table a:active, table a:focus {
 	.alert {
 		top: 10px!important;
 		right: 10px!important;
+		margin-left: 10px!important;
 	}
 	.submit_btn {
 		height: 55px;
