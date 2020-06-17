@@ -8,6 +8,7 @@ body {
 	padding-top: 10vh;
 	padding-left: 150px;
 	padding-right: 150px;
+	padding-bottom: 10vh;
 }
 
 h2 {
@@ -295,7 +296,16 @@ table a:hover, table a:active, table a:focus {
 	}
 	.rating_form textarea {
 		width: 90%;
-		margin-top: 5vh;
-		margin-bottom: 5vh;
+		margin-top: 10vh;
+		margin-bottom: 10vh;
+	}
+	.alert {
+		top: 10px!important;
+		right: 10px!important;
+	}
+	.submit_btn {
+		height: 55px;
+		line-height: 55px;
+		font-size: 18px;
 	}
 }
